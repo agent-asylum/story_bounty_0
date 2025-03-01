@@ -1,0 +1,37 @@
+alphabet_in:
+- RETRY_LIMIT_EXCEEDED
+- NETWORK_CONGESTION
+- GAS_PRICE_TOO_HIGH
+- DONE
+- ERROR
+default_start_state: InitializationRound
+final_states:
+- FinishedRound
+- ErrorRound
+label: story0AbciApp
+start_states:
+- InitializationRound
+states:
+- VerificationRound
+- FinishedRound
+- InitializationRound
+- CompilationRound
+- RetryCompilationRound
+- RetryDeploymentRound
+- ErrorRound
+- DeploymentRound
+transition_func:
+  (CompilationRound, DONE): DeploymentRound
+  (CompilationRound, ERROR): ErrorRound
+  (CompilationRound, NETWORK_CONGESTION): RetryCompilationRound
+  (DeploymentRound, DONE): VerificationRound
+  (DeploymentRound, ERROR): ErrorRound
+  (DeploymentRound, GAS_PRICE_TOO_HIGH): RetryDeploymentRound
+  (InitializationRound, DONE): CompilationRound
+  (InitializationRound, ERROR): ErrorRound
+  (RetryCompilationRound, DONE): DeploymentRound
+  (RetryCompilationRound, RETRY_LIMIT_EXCEEDED): ErrorRound
+  (RetryDeploymentRound, DONE): VerificationRound
+  (RetryDeploymentRound, RETRY_LIMIT_EXCEEDED): ErrorRound
+  (VerificationRound, DONE): FinishedRound
+  (VerificationRound, ERROR): ErrorRound
