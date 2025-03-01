@@ -1,0 +1,43 @@
+name: story_0
+author: agent_asylum
+version: 0.1.0
+type: skill
+description: The http echo skill prints out the content of received http messages
+  and responds with success.
+license: Apache-2.0
+aea_version: '>=1.0.0, <2.0.0'
+fingerprint:
+  README.md: bafybeiesl5jlvvu4enydib32bpyfqphlkdulxy3oqid3t32cjxya5qykci
+  __init__.py: bafybeib3666lyepusteoavqmaymbvpyjkhk3ix2admovs7xromgeahfvti
+  behaviours.py: bafybeihtrlfglsz5nbtqll645sqltgiw5vfws4dmdeye3p7gr4t2zfvr3m
+  dialogues.py: bafybeiggsfafkurldxnvjhqw3l424acxmpgr4x6qs36ociozuobikpqejy
+  handlers.py: bafybeidzt5shuz3hmel5xcwt6jnyfohbub4izmfexhmaxirqfhbbdooxbq
+  tests/__init__.py: bafybeigb2ji4vkcap3hokcedggjwsrah7te2nxjhkorwf3ibwgyaa2glma
+  tests/test_metrics.py: bafybeieisw4i675s4oaz7bx7uujyddxazyrz5zvfargqdqodfw4s7gx3ku
+  tests/test_metrics_dialogues.py: bafybeievjov6mh4hckgtpse4s6zq2zzkxmaob4bkarupqulnqxjfvnkobi
+fingerprint_ignore_patterns: []
+connections: []
+contracts: []
+protocols:
+- eightballer/default:0.1.0:bafybeicsdb3bue2xoopc6lue7njtyt22nehrnkevmkuk2i6ac65w722vwy
+- eightballer/http:0.1.0:bafybeid75xhq7hfdt7sgj7yrn44yj57xrgxscaw34ir46tndfzvodioxme
+skills: []
+behaviours:
+  main:
+    args: {}
+    class_name: Story0abciappFsmBehaviour
+handlers:
+  metrics_handler:
+    args:
+      enable_cors: false
+    class_name: HttpHandler
+models:
+  default_dialogues:
+    args: {}
+    class_name: DefaultDialogues
+  http_dialogues:
+    args: {}
+    class_name: HttpDialogues
+dependencies: {}
+is_abstract: false
+customs: []

@@ -1,0 +1,24 @@
+graph TD
+  InitializationRound
+  VerificationRound
+  FinishedRound
+  InitializationRound
+  CompilationRound
+  RetryCompilationRound
+  RetryDeploymentRound
+  ErrorRound
+  DeploymentRound
+  InitializationRound -->|DONE| CompilationRound
+  CompilationRound -->|DONE| DeploymentRound
+  DeploymentRound -->|DONE| VerificationRound
+  VerificationRound -->|DONE| FinishedRound
+  InitializationRound -->|ERROR| ErrorRound
+  CompilationRound -->|ERROR| ErrorRound
+  CompilationRound -->|NETWORK_CONGESTION| RetryCompilationRound
+  DeploymentRound -->|ERROR| ErrorRound
+  DeploymentRound -->|GAS_PRICE_TOO_HIGH| RetryDeploymentRound
+  VerificationRound -->|ERROR| ErrorRound
+  RetryCompilationRound -->|DONE| DeploymentRound
+  RetryCompilationRound -->|RETRY_LIMIT_EXCEEDED| ErrorRound
+  RetryDeploymentRound -->|DONE| VerificationRound
+  RetryDeploymentRound -->|RETRY_LIMIT_EXCEEDED| ErrorRound
